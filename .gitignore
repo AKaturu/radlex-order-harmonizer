@@ -3,12 +3,14 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+*.spec
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
 .venv/
 venv/
 outputs/
+.tmp/
 *.csv
 !tests/**/*.csv
 *.xlsx
