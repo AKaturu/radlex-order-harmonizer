@@ -66,6 +66,10 @@ def find_matches(
         if fuzzy is not None:
             scores.append((fuzzy, MatchStrategy.FUZZY))
 
+        # Note: token (Jaccard 0-1) and fuzzy (normalized Levenshtein 0-1) are
+        # on the same numeric scale but measure different similarity aspects.
+        # This is a deliberate design choice — the caller should tune min_score
+        # based on empirical performance rather than expecting strict comparability.
         best_score = max(s[0] for s in scores) if scores else 0.0
         best_strategy = max(scores, key=lambda x: x[0])[1] if scores else MatchStrategy.FUZZY
 

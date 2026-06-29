@@ -6,28 +6,6 @@ import pandas as pd
 
 from .models import RadLexEntry
 
-_MODALITY_SHORT: dict[str, list[str]] = {
-    "CT": ["CT", "Cat Scan"],
-    "MR": ["MR", "MRI", "Magnetic Resonance"],
-    "XR": ["XR", "X-Ray", "Radiograph"],
-    "US": ["US", "Ultrasound", "Sonogram"],
-    "NM": ["NM", "Nuclear Medicine", "Nuclear Scan"],
-    "MAMMOGRAPHY": ["Mammogram", "Mammography"],
-    "XA": ["XA", "Angiogram"],
-}
-
-_CONTRAST_VARIANTS = [
-    ("without", "wo", "without"),
-    ("with", "w/", "with"),
-    ("with and without", "w/wo", "with and without"),
-    ("without", "", ""),
-    ("with", "", ""),
-]
-
-_LATERALITY = ["left", "right", "bilateral", ""]
-
-_MODIFIERS = ["", "limited", "high resolution", "low dose", "screening", "diagnostic"]
-
 
 def generate_synthetic_names(
     entries: list[RadLexEntry],

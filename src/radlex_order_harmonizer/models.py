@@ -123,13 +123,6 @@ KNOWN_MODALITIES: set[str] = {
     "NM&CT", "PT&CT", "US&FL", "US&RF", "XR&RF", "CR",
     "RF", "MAMMO", "DXA", "PET",
 }
-
-CONTRAST_PATTERNS: dict[str, list[str]] = {
-    "without then with": ["w/wo", "w and wo", "with and without", "w /wo", "w/ wo"],
-    "with": ["w/", "with", "w iv", "iv contrast"],
-    "without": ["wo", "without", "w/o", "w/o iv", "wo iv", "without iv"],
-}
-
 LATERALITY_TERMS: dict[str, str] = {
     "left": "left",
     "right": "right",

@@ -132,6 +132,26 @@ def extract_laterality(name: str) -> str | None:
     return None
 
 
+KNOWN_ANATOMIC_FOCI: set[str] = {
+    "LIVER", "KIDNEY", "PANCREAS", "SPLEEN", "ADRENAL",
+    "BRAIN", "SELLA", "ORBIT", "SINUS", "TEMPORAL",
+    "HEART", "AORTA", "CORONARY", "CAROTID", "VERTEBRAL",
+    "THYROID", "PAROTID", "SUBMANDIBULAR",
+    "PROSTATE", "UTERUS", "OVARY", "BLADDER", "TESTICLE",
+    "LUNG", "BRONCHUS", "PLEURA",
+    "HAND", "WRIST", "ELBOW", "SHOULDER", "HIP", "KNEE", "ANKLE", "FOOT",
+    "VESSEL", "ARTERY", "VEIN",
+}
+
+
+def extract_anatomic_focus(name: str) -> str | None:
+    upper = name.upper()
+    for focus in KNOWN_ANATOMIC_FOCI:
+        if re.search(rf"\b{focus}\b", upper):
+            return focus
+    return None
+
+
 def normalize_procedure(name: str) -> NormalizedProcedure:
     normalized = normalize_name(name)
     tokens = tokenize(name)
@@ -139,6 +159,7 @@ def normalize_procedure(name: str) -> NormalizedProcedure:
     body_parts = extract_body_parts(name)
     contrast = extract_contrast_status(normalized)
     laterality = extract_laterality(name)
+    anatomic_focus = extract_anatomic_focus(name)
     return NormalizedProcedure(
         original=name,
         normalized=normalized,
@@ -147,5 +168,5 @@ def normalize_procedure(name: str) -> NormalizedProcedure:
         body_parts=body_parts,
         contrast_status=contrast,
         laterality=laterality,
-        anatomic_focus=None,
+        anatomic_focus=anatomic_focus,
     )

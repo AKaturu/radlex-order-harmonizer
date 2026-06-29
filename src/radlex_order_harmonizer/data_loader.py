@@ -10,13 +10,6 @@ from .models import RADLEX_CSV_URL, RadLexEntry
 
 CACHE_DIR = Path.home() / ".cache" / "radlex-order-harmonizer"
 CACHE_FILE = CACHE_DIR / "radlex-playbook-complete.csv"
-CACHE_MARKER = CACHE_DIR / ".cache_valid"
-
-
-def _get_cache_path(url: str = RADLEX_CSV_URL) -> Path:
-    return CACHE_DIR / f"radlex-playbook-{hash(url)}.csv"
-
-
 def download_radlex_csv(
     url: str = RADLEX_CSV_URL,
     cache_dir: Path | None = None,
@@ -31,8 +24,11 @@ def download_radlex_csv(
         return cache_path
 
     print(f"Downloading RadLex Playbook from {url}...")
-    response = httpx.get(url, follow_redirects=True, timeout=timeout)
-    response.raise_for_status()
+    try:
+        response = httpx.get(url, follow_redirects=True, timeout=timeout)
+        response.raise_for_status()
+    except Exception as e:
+        raise RuntimeError(f"Failed to download RadLex CSV from {url}: {e}") from e
 
     cache_path.write_bytes(response.content)
     print(f"Cached to {cache_path}")
