@@ -11,16 +11,18 @@
 
 Hospitals often have local procedure names that drift from standard terminology. This makes analytics, protocol review, migration, and cross-site reporting harder. This project creates transparent RadLex Playbook candidate mappings that can be reviewed by radiology operations, informatics, and quality teams.
 
-**Validation status:** Software functionality has been tested using synthetic or public data as described below. This project has not undergone prospective clinical validation and is not intended for independent clinical decision-making.
+## Evidence Status
 
 | Evidence | Status |
 |---|---|
-| Unit tests | Complete |
-| Synthetic end-to-end test | Complete |
+| Unit and integration tests | Complete |
+| Synthetic end-to-end evaluation | Complete |
 | Public-data evaluation | Not completed |
-| Expert review | Not completed |
+| Independent expert review | Not completed |
 | Institutional validation | Not completed |
 | Prospective clinical validation | Not completed |
+
+This software is a research prototype and is not intended for independent clinical decision-making.
 
 ## Capabilities
 
@@ -49,6 +51,10 @@ RadLex Playbook is provided by the [Radiological Society of North America (RSNA)
 - It does not replace human adjudication
 - Should not automatically overwrite production order dictionaries without institutional review
 - Validate matching against institution-specific order dictionaries before operational use
+
+## Releases
+
+Download the current Windows, macOS, or Linux archive from the [Releases page](https://github.com/AKaturu/radlex-order-harmonizer/releases). SHA-256 checksum sidecars are attached to the release assets.
 
 ## Documentation
 
